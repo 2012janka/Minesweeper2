@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Player times.	//skuska
+ * Player times.	
  */
 public class BestTimes implements Iterable<BestTimes.PlayerTime> {
     /** List of best player times. */
