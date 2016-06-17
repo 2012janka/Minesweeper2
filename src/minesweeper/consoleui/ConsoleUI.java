@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import minesweeper.Minesweeper;
 import minesweeper.UserInterface;
 import minesweeper.core.Clue;
 import minesweeper.core.Field;
@@ -55,6 +56,7 @@ public class ConsoleUI implements UserInterface {
 
 	@Override
 	public void update() {
+		System.out.println("Time: " + Minesweeper.getInstance().getPlayingSeconds());
 		System.out.print(field.getRemainingMineCount() + " |");
 		for (int i = 0; i < field.getRowCount(); i++) {
 			System.out.print(i + " ");
