@@ -15,7 +15,7 @@ import minesweeper.core.Mine;
 import minesweeper.core.Tile;
 
 /**
- * Console user interface.	//pokussssssss
+ * Console user interface.
  */
 public class ConsoleUI implements UserInterface {
 	/** Playing field. */

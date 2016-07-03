@@ -12,6 +12,7 @@ public class Minesweeper {
 	private long startMillis;
 	private BestTimes bestTimes = new BestTimes();
 	private static Minesweeper instance;
+	private Settings setting;
 
 	/**
 	 * Constructor.
@@ -21,7 +22,8 @@ public class Minesweeper {
 
 		userInterface = new ConsoleUI();
 
-		Field field = new Field(9, 9, 10);
+		Field field = new Field(Settings.load().getRowCount(), Settings.load().getColumnCount(),
+				Settings.load().getMineCount());
 
 		startMillis = System.currentTimeMillis();
 
@@ -52,5 +54,14 @@ public class Minesweeper {
 
 	public static Minesweeper getInstance() {
 		return instance;
+	}
+
+	public Settings getSetting() {
+		return setting;
+	}
+
+	public void setSetting(Settings setting) {
+		this.setting = setting;
+		setting.save();
 	}
 }
