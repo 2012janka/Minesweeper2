@@ -43,7 +43,7 @@ public class BestTimes implements Iterable<BestTimes.PlayerTime> {
 		try {
 			insertToDB(player);
 		} catch (SQLException e) {
-			System.out.println("Chyba pri ukladani casu: "+e.getMessage());
+			System.out.println("Error saving time: "+e.getMessage());
 		}
 		Collections.sort(playerTimes);
 	}

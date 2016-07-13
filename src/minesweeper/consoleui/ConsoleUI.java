@@ -67,17 +67,17 @@ public class ConsoleUI implements UserInterface {
 			System.out.println();
 			System.out.printf("%c |", ((char) (m + 'A')));
 			for (int n = 0; n < field.getColumnCount(); n++) {
-				Tile aktualnaDlazdica = field.getTile(m, n);
-				if (aktualnaDlazdica.getState() == Tile.State.OPEN
-						&& aktualnaDlazdica instanceof Mine) {
+				Tile actualTile = field.getTile(m, n);
+				if (actualTile.getState() == Tile.State.OPEN
+						&& actualTile instanceof Mine) {
 					System.out.print("X ");
-				} else if (aktualnaDlazdica.getState() == Tile.State.OPEN
-						&& aktualnaDlazdica instanceof Clue) {
+				} else if (actualTile.getState() == Tile.State.OPEN
+						&& actualTile instanceof Clue) {
 					System.out
-							.print(((Clue) aktualnaDlazdica).getValue() + " ");
-				} else if (aktualnaDlazdica.getState() == Tile.State.MARKED) {
+							.print(((Clue) actualTile).getValue() + " ");
+				} else if (actualTile.getState() == Tile.State.MARKED) {
 					System.out.print("M ");
-				} else if (aktualnaDlazdica.getState() == Tile.State.CLOSED) {
+				} else if (actualTile.getState() == Tile.State.CLOSED) {
 					System.out.print("- ");
 				}
 			}
@@ -105,21 +105,21 @@ public class ConsoleUI implements UserInterface {
 		Matcher matcher = INPUT_PATTERN.matcher(input);
 
 		if (matcher.matches()) {
-			String vyber1 = matcher.group(1);
-			String vyber2 = matcher.group(2);
-			String vyber3String = matcher.group(3);
+			String option1 = matcher.group(1);
+			String option2 = matcher.group(2);
+			String option3String = matcher.group(3);
 
 			if (input.equals("x")) {
 				System.out.println("Bye :-)");
 				System.exit(0);
-			} else if (vyber1.equals("m")) {
-				int charAI = vyber2.charAt(0) - 'a';
-				int vyber3Int = Integer.parseInt(vyber3String);
-				field.markTile(charAI, vyber3Int);
+			} else if (option1.equals("m")) {
+				int charAI = option2.charAt(0) - 'a';
+				int option3Int = Integer.parseInt(option3String);
+				field.markTile(charAI, option3Int);
 
-			} else if (vyber1.equals("o")) {
-				int charAI = vyber2.charAt(0) - 'a';
-				int vyber3Int = Integer.parseInt(vyber3String);
+			} else if (option1.equals("o")) {
+				int charAI = option2.charAt(0) - 'a';
+				int vyber3Int = Integer.parseInt(option3String);
 				field.openTile(charAI, vyber3Int);
 			}
 		} else {

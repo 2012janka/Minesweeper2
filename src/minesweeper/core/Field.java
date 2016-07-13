@@ -130,22 +130,21 @@ public class Field {
 	private void generate() {
 		int i = 0;
 		while (i < mineCount) {
-			Random cislo1 = new Random();
-			Random cislo2 = new Random();
+			Random number1 = new Random();
+			Random number2 = new Random();
 
-			int row = cislo1.nextInt(rowCount);
-			int column = cislo2.nextInt(columnCount);
+			int row = number1.nextInt(rowCount);
+			int column = number2.nextInt(columnCount);
 			if (tiles[row][column] == null) {
 				tiles[row][column] = new Mine();
 				// tiles[row][column].setState(Tile.State.OPEN);
 				i++;
 			}
 		}
-		for (int m = 0; m < this.getRowCount(); m++) {
-			for (int n = 0; n < this.getColumnCount(); n++) {
-				if (tiles[m][n] == null) {
-					tiles[m][n] = new Clue(countAdjacentMines(m, n));
-					// tiles[m][n].setState(Tile.State.OPEN);
+		for (int row = 0; row < this.getRowCount(); row++) {
+			for (int column = 0; column < this.getColumnCount(); column++) {
+				if (tiles[row][column] == null) {
+					tiles[row][column] = new Clue(countAdjacentMines(row, column));
 				}
 			}
 		}
@@ -157,9 +156,9 @@ public class Field {
 	 * @return true if game is solved, false otherwise
 	 */
 	private boolean isSolved() {
-		int pocetVsetkychDlazdic = this.getRowCount() * this.getColumnCount();
-		int pocetOdokrytychDlazdic = getNumberOf(Tile.State.OPEN);
-		if (pocetVsetkychDlazdic - pocetOdokrytychDlazdic == mineCount) {
+		int numberOfAllTiles = this.getRowCount() * this.getColumnCount();
+		int numberOfUncoveredTiles= getNumberOf(Tile.State.OPEN);
+		if (numberOfAllTiles - numberOfUncoveredTiles == mineCount) {
 			return true;
 		}
 		return false;
@@ -194,15 +193,15 @@ public class Field {
 	}
 
 	private int getNumberOf(Tile.State state) {
-		int pocet = 0;
-		for (int m = 0; m < this.getRowCount(); m++) {
-			for (int n = 0; n < this.getColumnCount(); n++) {
-				if (this.getTile(m, n).getState() == state) {
-					pocet++;
+		int count = 0;
+		for (int row = 0; row < this.getRowCount(); row++) {
+			for (int column = 0; column < this.getColumnCount(); column++) {
+				if (this.getTile(row, column).getState() == state) {
+					count++;
 				}
 			}
 		}
-		return pocet;
+		return count;
 	}
 
 	private void openAdjacentTiles(int row, int column) {
